@@ -17,7 +17,7 @@ Ensure the main program can be run in https://coderpad.io/
 
 ## Tree Node Class
 class TreeNode:
-    def __init__(self, end:bool):
+    def __init__(self, end):
         self.end = end
         self.next = [None for _ in range(26)]
 
@@ -62,7 +62,7 @@ class Anagram:
         return WordsTree
                     
     ## Input
-    def GetPossibleWords(self,characters:[]):
+    def GetPossibleWords(self,characters):
         ## case-insensitive
         characters = [letter.lower() for letter in characters]
         ## Create Tree
@@ -71,7 +71,7 @@ class Anagram:
         temp_tree = self.WordsTree
         self.TraverseTree(temp_tree,characters,pre)
     
-    def TraverseTree(self,tree:TreeNode,characters:[],pre:str):
+    def TraverseTree(self,tree,characters,pre):
         if not characters:
             self.SearchWords(tree,pre)
         for node in range(len(tree.next)):
@@ -88,14 +88,14 @@ class Anagram:
                 
     
     ## Append all possible words into result
-    def SearchWords(self,tree,pre:str):
+    def SearchWords(self,tree,pre):
         if tree.end == True:
             self.words.append(pre)
         for node in range(len(tree.next)):
             if tree.next[node]:
                 self.SearchWords(tree.next[node],pre+chr(97+node))
                 
-    def SetTree(self,tree:TreeNode):
+    def SetTree(self,tree):
         self.WordsTree = tree
         
     ## Test data
