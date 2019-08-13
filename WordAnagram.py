@@ -100,6 +100,7 @@ class Anagram:
         
     ## Test data
     def TestWordAnagram(self):
+        self.words = []
         with open('testdata.txt','rt') as file:
             for line in file:
                 line = line.strip()
@@ -109,4 +110,6 @@ class Anagram:
                 self.words = []
             
 test = Anagram()
+test.GetPossibleWords(['a','b','c','d','e'])
+print(test.words)
 test.TestWordAnagram()
